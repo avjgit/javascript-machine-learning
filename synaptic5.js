@@ -11,10 +11,10 @@ var outInDays = [0, 1, 0];
 var outInMonths = [0, 0, 1];
 
 var trainingData = [
-    { input: [young, illLight], output: outInHours }, // young, not severe illness -> out in hours
-    { input: [young, illSevere], output: outInDays }, // young, severe illness -> out in days
-    { input: [old, illLight], output: outInDays }, // old, not severe illness -> out in days
-    { input: [old, illSevere], output: outInMonths }, // old, severe illness -> out in weeks
+    [ [young, illLight],    outInHours ], // young, not severe illness -> out in hours
+    [ [young, illSevere],   outInDays ], // young, severe illness -> out in days
+    [ [old, illLight],      outInDays ], // old, not severe illness -> out in days
+    [ [old, illSevere],     outInMonths ], // old, severe illness -> out in weeks
 ];
 
 
@@ -32,9 +32,9 @@ function learnStayLength(trainingData) {
 
     function train(data) {
         for (var i = 0; i < data.length; i++) {
-            input.activate(data[i]["input"]);
+            input.activate(data[i][0]);
             output.activate();
-            output.propagate(learningRate, data[i]["output"]);
+            output.propagate(learningRate, data[i][1]);
         }
     }
 
@@ -61,4 +61,6 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
+learnStayLength(trainingData);
+getStayLength([0,1]);
 // todo: normalize (split to make 100% sum)
