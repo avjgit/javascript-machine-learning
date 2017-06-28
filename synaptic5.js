@@ -18,8 +18,8 @@ var trainingData = [
 ];
 
 
-var input;
-var output;
+var machineLearningInput;
+var machineLearningOutput;
 
 // first - learn from data
 function learnStayLength(trainingData) {
@@ -32,9 +32,9 @@ function learnStayLength(trainingData) {
 
     function train(data) {
         for (var i = 0; i < data.length; i++) {
-            input.activate(data[i][0]);
-            output.activate();
-            output.propagate(learningRate, data[i][1]);
+            machineLearningInput.activate(data[i][0]);
+            machineLearningOutput.activate();
+            machineLearningOutput.propagate(learningRate, data[i][1]);
         }
     }
 
@@ -44,17 +44,17 @@ function learnStayLength(trainingData) {
         }
     }
 
-    input = new synaptic.Layer(inputCount);
-    output = new synaptic.Layer(outputCount);
-    input.project(output); // map inputs to output
+    machineLearningInput = new synaptic.Layer(inputCount);
+    machineLearningOutput = new synaptic.Layer(outputCount);
+    machineLearningInput.project(machineLearningOutput); // map machineLearningInputs to machineLearningOutput
     retrain(trainingData); // train
 }
 
-// second - get output from trained model
+// second - get machineLearningOutput from trained model
 function getStayLength(testData) {
-    input.activate(testData);
+    machineLearningInput.activate(testData);
 
-    var result = output.activate();
+    var result = machineLearningOutput.activate();
 
     console.log("Hours neuron: " + result[0] * 100 + "%");
     console.log("Days neuron: " + result[1] * 100 + "%");
