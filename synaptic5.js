@@ -38,20 +38,24 @@ function retrain(data) {
 }
 
 // create a network
-var input = new synaptic.Layer(inputCount);
-var output = new synaptic.Layer(outputCount);
-input.project(output); // map inputs to output
-retrain(trainingData); // train
+var input;
+var output;
 
-input.activate([0, 1]); // young, not-so-ill
-
-var result = output.activate();
-
-console.log("Hours neuron: " + result[0] * 100 + "%");
-console.log("Days neuron: " + result[1] * 100 + "%");
-console.log("Weeks neuron: " + result[2] * 100 + "%");
+function learnStayLength(trainingData) {
+    input = new synaptic.Layer(inputCount);
+    output = new synaptic.Layer(outputCount);
+    input.project(output); // map inputs to output
+    retrain(trainingData); // train
+}
 
 function getStayLength(testData) {
-    
+    input.activate(testData); // young, not-so-ill
+
+    var result = output.activate();
+
+    console.log("Hours neuron: " + result[0] * 100 + "%");
+    console.log("Days neuron: " + result[1] * 100 + "%");
+    console.log("Weeks neuron: " + result[2] * 100 + "%");
+
 }
 // todo: normalize (split to make 100% sum)
