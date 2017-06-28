@@ -1,25 +1,26 @@
-// completely fiction data
+function getExampleData() {
 
-var young = 0; 
-var old = 1;
+    var young = 0; 
+    var old = 1;
 
-var illLight = 0; 
-var illSevere =1;
+    var illLight = 0; 
+    var illSevere =1;
 
-var outInHours = [1, 0, 0];
-var outInDays = [0, 1, 0];
-var outInMonths = [0, 0, 1];
+    var outInHours = [1, 0, 0];
+    var outInDays = [0, 1, 0];
+    var outInMonths = [0, 0, 1];
 
-var trainingData = [
-    [ [young, illLight],    outInHours ], // young, not severe illness -> out in hours
-    [ [young, illSevere],   outInDays ], // young, severe illness -> out in days
-    [ [old, illLight],      outInDays ], // old, not severe illness -> out in days
-    [ [old, illSevere],     outInMonths ], // old, severe illness -> out in weeks
-];
-
+    return [
+        [ [young, illLight],    outInHours ], // young, not severe illness -> out in hours
+        [ [young, illSevere],   outInDays ], // young, severe illness -> out in days
+        [ [old, illLight],      outInDays ], // old, not severe illness -> out in days
+        [ [old, illSevere],     outInMonths ], // old, severe illness -> out in weeks
+    ];
+}
 
 var machineLearningInput;
 var machineLearningOutput;
+
 
 // first - learn from data
 function learnStayLength(trainingData) {
@@ -61,6 +62,6 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
-learnStayLength(trainingData);
+learnStayLength(getExampleData());
 getStayLength([0,1]);
 // todo: normalize (split to make 100% sum)
