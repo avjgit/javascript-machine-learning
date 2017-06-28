@@ -18,10 +18,6 @@ function getExampleData() {
     ];
 }
 
-var machineLearningInput;
-var machineLearningOutput;
-
-
 // first - learn from data
 function learnStayLength(trainingData) {
     
@@ -45,14 +41,17 @@ function learnStayLength(trainingData) {
         }
     }
 
-    machineLearningInput = new synaptic.Layer(inputCount);
-    machineLearningOutput = new synaptic.Layer(outputCount);
+    var machineLearningInput = new synaptic.Layer(inputCount);
+    var machineLearningOutput = new synaptic.Layer(outputCount);
     machineLearningInput.project(machineLearningOutput); // map machineLearningInputs to machineLearningOutput
     retrain(trainingData); // train
+    return [machineLearningInput, machineLearningOutput]
 }
 
 // second - get machineLearningOutput from trained model
-function getStayLength(testData) {
+function getStayLength(network, testData) {
+    var machineLearningInput = network[0];
+    var machineLearningOutput = network[1];
     machineLearningInput.activate(testData);
 
     var result = machineLearningOutput.activate();
@@ -62,6 +61,6 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
-learnStayLength(getExampleData());
-getStayLength([0,1]);
+var model = learnStayLength(getExampleData());
+getStayLength(model, [0,1]);
 // todo: normalize (split to make 100% sum)
