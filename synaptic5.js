@@ -1,7 +1,11 @@
 // completely fiction data
 
-var young = 0; var old = 1;
-var illLight = 0; var illSevere =1;
+var young = 0; 
+var old = 1;
+
+var illLight = 0; 
+var illSevere =1;
+
 var outInHours = [1, 0, 0];
 var outInDays = [0, 1, 0];
 var outInMonths = [0, 0, 1];
@@ -13,15 +17,16 @@ var trainingData = [
     { input: [old, illSevere], output: outInMonths }, // old, severe illness -> out in weeks
 ];
 
-// create a network
+
 var input;
 var output;
 
+// first - learn from data
 function learnStayLength(trainingData) {
     
     // settings - depends on data
-    var inputCount = 2; // age, illness?
-    var outputCount = 3; // out in hours, days, weeks?
+    var inputCount = 2; // age, illness
+    var outputCount = 3; // out in hours, days, weeks
     var learningRate = 0.4; // trial and error? how to set in unsupervised?
     var trainSteps = 1000;
 
@@ -45,14 +50,15 @@ function learnStayLength(trainingData) {
     retrain(trainingData); // train
 }
 
+// second - get output from trained model
 function getStayLength(testData) {
-    input.activate(testData); // young, not-so-ill
+    input.activate(testData);
 
     var result = output.activate();
 
     console.log("Hours neuron: " + result[0] * 100 + "%");
     console.log("Days neuron: " + result[1] * 100 + "%");
     console.log("Weeks neuron: " + result[2] * 100 + "%");
-
 }
+
 // todo: normalize (split to make 100% sum)
