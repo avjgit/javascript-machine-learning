@@ -62,6 +62,7 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
-learnStayLength(getExampleData());
-getStayLength([0,1]);
+console.log("you may want to use it like that:");
+console.log("learnStayLength(getExampleData());");
+console.log("getStayLength([0,1]);");
 // todo: normalize (split to make 100% sum)
