@@ -18,12 +18,35 @@ function synaptic_simple_learn(x, y, learningRate = 0.4, trainingSteps = 1000) {
     }
 
     var inputCount = x[0].length;
-    var outputCount = y[0].length;
+    // var outputCount = y[0].length;
+
+    var outputCount = Math.max.apply(Math, y) + 1;
+
+    var y_as_neurons_array = [];
+
+    for(var i = 0; i < y.length; i++) {
+
+        var el = [];
+
+        for (var z = 0; z < outputCount; z++) {
+            if (z == y[i]){
+                el.push(1);
+            } else {
+                el.push(0);
+            }
+        }
+
+        y_as_neurons_array.push(el);
+    }
+
+    y = y_as_neurons_array;
 
     var data =[]
     for (var i = 0; i < x.length; i++) {
         data.push([ x[i], y[i] ]);
     }
+
+    console.log(data);
 
     machineLearningInput = new synaptic.Layer(inputCount);
     machineLearningOutput = new synaptic.Layer(outputCount);

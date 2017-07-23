@@ -12,14 +12,14 @@ function getExampleData() {
     var illLight = 0;
     var illSevere = 1;
 
-    var outInHours = [1, 0, 0];
-    var outInDays = [0, 1, 0];
-    var outInMonths = [0, 0, 1];
+    // var outInDay = [1, 0, 0];
+    // var outInWeek = [0, 1, 0];
+    // var outInMonth = [0, 0, 1];
 
     // todo: how?
-    // var outInDay = 1;
-    // var outInWeek = 7;
-    // var outInMonth = 30;
+    var outInDay = 0;
+    var outInWeek = 1;
+    var outInMonth = 2;
 
     var patientData = [
         [young, illLight],  // young, not severe illness -> out in hours
@@ -29,10 +29,10 @@ function getExampleData() {
     ];
 
     var patientDischarge = [
-        outInHours,
-        outInDays,
-        outInDays,
-        outInMonths
+        outInDay,
+        outInWeek,
+        outInWeek,
+        outInMonth
     ];
 
     return [patientData, patientDischarge];
