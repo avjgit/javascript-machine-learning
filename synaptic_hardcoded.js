@@ -1,20 +1,20 @@
-function getExampleData() {
+function getHardcodedExampleData() {
 
-    var young = 0; 
+    var young = 0;
     var old = 1;
 
-    var illLight = 0; 
-    var illSevere =1;
+    var illLight = 0;
+    var illSevere = 1;
 
     var outInHours = [1, 0, 0];
     var outInDays = [0, 1, 0];
     var outInMonths = [0, 0, 1];
 
     return [
-        [ [young, illLight],    outInHours ], // young, not severe illness -> out in hours
-        [ [young, illSevere],   outInDays ], // young, severe illness -> out in days
-        [ [old, illLight],      outInDays ], // old, not severe illness -> out in days
-        [ [old, illSevere],     outInMonths ], // old, severe illness -> out in weeks
+        [[young, illLight], outInHours], // young, not severe illness -> out in hours
+        [[young, illSevere], outInDays], // young, severe illness -> out in days
+        [[old, illLight], outInDays], // old, not severe illness -> out in days
+        [[old, illSevere], outInMonths], // old, severe illness -> out in weeks
     ];
 }
 
@@ -24,7 +24,7 @@ var machineLearningOutput;
 
 // first - learn from data
 function learnStayLength(trainingData) {
-    
+
     // settings - depends on data
     var inputCount = 2; // age, illness
     var outputCount = 3; // out in hours, days, weeks
@@ -62,7 +62,6 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
-console.log("you may want to use it like that:");
-console.log("learnStayLength(getExampleData());");
-console.log("getStayLength([0,1]);");
-// todo: normalize (split to make 100% sum)
+console.log("[deprecated] you may want to use it like that:");
+console.log("[deprecated] learnStayLength(getHardcodedExampleData());");
+console.log("[deprecated] getStayLength([0,1]);");
