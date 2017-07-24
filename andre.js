@@ -4,7 +4,7 @@
 // reinforcemnt
 // epochs
 
-function getExampleData() {
+function getExampleData(input_is_array = false) {
 
     var young = 0;
     var old = 1;
@@ -12,14 +12,22 @@ function getExampleData() {
     var illLight = 0;
     var illSevere = 1;
 
-    // var outInDay = [1, 0, 0];
-    // var outInWeek = [0, 1, 0];
-    // var outInMonth = [0, 0, 1];
+    var outInDay;
+    var outInWeek;
+    var outInMonth;
 
-    // todo: how?
-    var outInDay = 0;
-    var outInWeek = 1;
-    var outInMonth = 2;
+    if (input_is_array) {
+        // ver. 1: input as array
+        outInDay = [1, 0, 0];
+        outInWeek = [0, 1, 0];
+        outInMonth = [0, 0, 1];
+    }
+    else {
+        // ver. 2: input as a single number
+        outInDay = 0;
+        outInWeek = 1;
+        outInMonth = 2;
+    }
 
     var patientData = [
         [young, illLight],  // young, not severe illness -> out in hours
@@ -40,10 +48,10 @@ function getExampleData() {
 
 var network_chosen = 'synaptic-simple';
 
-function learn(x, y, learningRate = 0.4, trainingSteps = 1000, network = 'synaptic-simple') {
+function learn(x, y, learningRate = 0.4, trainingSteps = 1000, input_is_array = false, network = 'synaptic-simple') {
     switch (network) {
         default:
-            synaptic_simple_learn(x, y, learningRate, trainingSteps);
+            synaptic_simple_learn(x, y, learningRate, trainingSteps, input_is_array);
     }
 }
 
@@ -54,9 +62,10 @@ function predict(x) {
     }
 }
 
-var testData =getExampleData();
-learn(testData[0], testData[1]);
-predict([0,0]);
-predict([1,0]);
-predict([0,1]);
-predict([1,1]);
+var input_is_array = true;
+var testData = getExampleData(input_is_array);
+learn(testData[0], testData[1], 0.4, 1000, input_is_array);
+predict([0, 0]);
+predict([1, 0]);
+predict([0, 1]);
+predict([1, 1]);
