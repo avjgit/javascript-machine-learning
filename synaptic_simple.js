@@ -1,7 +1,7 @@
 var machineLearningInput;
 var machineLearningOutput;
 
-function synaptic_simple_learn(x, y, learningRate = 0.4, trainingSteps = 1000) {
+function synaptic_simple_learn(x, y, learningRate = 0.4, trainingSteps = 1000, input_is_array = false) {
 
     function train_step(data) {
         for (var i = 0; i < data.length; i++) {
@@ -18,35 +18,42 @@ function synaptic_simple_learn(x, y, learningRate = 0.4, trainingSteps = 1000) {
     }
 
     var inputCount = x[0].length;
-    // var outputCount = y[0].length;
+    var outputCount;
 
-    var outputCount = Math.max.apply(Math, y) + 1;
+    if (input_is_array) {
+        // ver. 1: input as array
+        outputCount = y[0].length;
+    }
+    else {
+        // ver. 2: input as a single number
+        outputCount = Math.max.apply(Math, y) + 1;
 
-    var y_as_neurons_array = [];
+        var y_as_neurons_array = [];
 
-    for(var i = 0; i < y.length; i++) {
+        for (var i = 0; i < y.length; i++) {
 
-        var el = [];
+            var el = [];
 
-        for (var z = 0; z < outputCount; z++) {
-            if (z == y[i]){
-                el.push(1);
-            } else {
-                el.push(0);
+            for (var z = 0; z < outputCount; z++) {
+                if (z == y[i]) {
+                    el.push(1);
+                } else {
+                    el.push(0);
+                }
             }
+
+            y_as_neurons_array.push(el);
         }
 
-        y_as_neurons_array.push(el);
+        y = y_as_neurons_array;
     }
 
-    y = y_as_neurons_array;
-
-    var data =[]
+    var data = []
     for (var i = 0; i < x.length; i++) {
-        data.push([ x[i], y[i] ]);
+        data.push([x[i], y[i]]);
     }
 
-    console.log(data);
+    // console.log(data);
 
     machineLearningInput = new synaptic.Layer(inputCount);
     machineLearningOutput = new synaptic.Layer(outputCount);
@@ -61,17 +68,19 @@ function normalize(y) {
     }
     var y_normalized = [];
     for (var i = 0; i < y.length; i++) {
-        y_normalized.push( (y[i] / sum).toFixed(2));
+        y_normalized.push((y[i] / sum).toFixed(2));
     }
     return y_normalized;
 }
 
-function synaptic_simple_predict(x){
+function synaptic_simple_predict(x) {
+
     machineLearningInput.activate(x);
     var result = machineLearningOutput.activate();
+
     result = normalize(result);
     for (var i = 0; i < result.length; i++) {
-        var nr = i+1;
+        var nr = i + 1;
         var percent = result[i] * 100;
         console.log("Neuron " + nr + ": " + percent + "%");
     }
