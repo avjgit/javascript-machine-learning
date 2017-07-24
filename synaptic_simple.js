@@ -74,6 +74,7 @@ function normalize(y) {
 }
 
 function synaptic_simple_predict(x) {
+    console.log("For " + x + ": ");
 
     machineLearningInput.activate(x);
     var result = machineLearningOutput.activate();
@@ -83,5 +84,21 @@ function synaptic_simple_predict(x) {
         var nr = i + 1;
         var percent = result[i] * 100;
         console.log("Neuron " + nr + ": " + percent + "%");
+    }
+}
+
+function synaptic_simple_predict_single(x) {
+
+    console.log("For " + x + ": ");
+
+    machineLearningInput.activate(x);
+    var result = machineLearningOutput.activate();
+    result = normalize(result);
+    var max = Math.max.apply(Math, result);
+
+    for (var i = 0; i < result.length; i++) {
+        if (result[i] == max) {
+            console.log(i) + 1;
+        }
     }
 }
