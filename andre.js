@@ -62,17 +62,34 @@ function predict(x) {
     }
 }
 
-//console.log('some data example:');
+console.log('============= executing some example data:');
+console.log("var young = 0;");
+console.log("var old = 1;");
+console.log("var illLight = 0;");
+console.log("var illSevere = 1;");
+console.log("var x = [[young, illLight], [young, illSevere], [old, illLight], [old, illSevere]];");
+console.log("var y = [1, 5, 7, 30]; // length in days");
+console.log("learn(x, y);");
+console.log("predict([0, 0]); // should have a day");
+console.log("predict([1, 0]); // should have a week");
+console.log("predict([0, 1]); // should have a week");
+console.log("predict([1, 1]); // should have a month");
 
-// var input_is_array = false;
-// var testData = getExampleData(input_is_array);
-// learn(testData[0], testData[1], 0.4, 1000, input_is_array);
-// predict([0, 0]);
-// predict([1, 0]);
-// predict([0, 1]);
-// predict([1, 1]);
+var young = 0;
+var old = 1;
+var illLight = 0;
+var illSevere = 1;
 
-console.log('XOR: executing');
+var x = [[young, illLight], [young, illSevere], [old, illLight], [old, illSevere]];
+var y = [1, 5, 7, 30]; // length in days
+
+learn(x, y);
+predict([0, 0]); // should have a day
+predict([1, 0]); // should have a week
+predict([0, 1]); // should have a week
+predict([1, 1]); // should have a month
+
+console.log('============= executing XOR example:');
 
 console.log("var x = [[0, 0], [0, 1], [1, 0], [1, 1]];");
 console.log("var y = [0, 1, 1, 0];");
@@ -84,7 +101,7 @@ console.log("predict([1, 1]);  // should have 0");
 
 var x = [[0, 0], [0, 1], [1, 0], [1, 1]];
 var y = [0, 1, 1, 0];
-learn(x, y, 0.4, 10000);
+learn(x, y, 0.4, 1000);
 predict([0, 0]);  // should have 0
 predict([0, 1]);  // should have 1
 predict([1, 0]);  // should have 1
