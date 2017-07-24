@@ -24,9 +24,9 @@ function getExampleData(input_is_array = false) {
     }
     else {
         // ver. 2: input as a single number
-        outInDay = 0;
-        outInWeek = 1;
-        outInMonth = 2;
+        outInDay = 1;
+        outInWeek = 7;
+        outInMonth = 30;
     }
 
     var patientData = [
@@ -58,11 +58,11 @@ function learn(x, y, learningRate = 0.4, trainingSteps = 1000, input_is_array = 
 function predict(x) {
     switch (network_chosen) {
         default:
-            synaptic_simple_predict(x);
+            synaptic_simple_predict_single(x);
     }
 }
 
-var input_is_array = true;
+var input_is_array = false;
 var testData = getExampleData(input_is_array);
 learn(testData[0], testData[1], 0.4, 1000, input_is_array);
 predict([0, 0]);
