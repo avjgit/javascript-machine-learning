@@ -62,6 +62,6 @@ function getStayLength(testData) {
     console.log("Weeks neuron: " + result[2] * 100 + "%");
 }
 
-console.log("[deprecated] you may want to use it like that:");
-console.log("[deprecated] learnStayLength(getHardcodedExampleData());");
-console.log("[deprecated] getStayLength([0,1]);");
+// console.log("[deprecated] you may want to use it like that:");
+// console.log("[deprecated] learnStayLength(getHardcodedExampleData());");
+// console.log("[deprecated] getStayLength([0,1]);");
