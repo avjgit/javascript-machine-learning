@@ -89,21 +89,21 @@ predict([1, 0]); // should have a week
 predict([0, 1]); // should have a week
 predict([1, 1]); // should have a month
 
-console.log('============= executing XOR example:');
+// console.log('============= executing XOR example:');
 
-console.log("var x = [[0, 0], [0, 1], [1, 0], [1, 1]];");
-console.log("var y = [0, 1, 1, 0];");
-console.log("learn(x, y, 0.4, 10000);");
-console.log("predict([0, 0]);  // should have 0");
-console.log("predict([0, 1]);  // should have 1");
-console.log("predict([1, 0]);  // should have 1");
-console.log("predict([1, 1]);  // should have 0");
+// console.log("var x = [[0, 0], [0, 1], [1, 0], [1, 1]];");
+// console.log("var y = [0, 1, 1, 0];");
+// console.log("learn(x, y, 0.4, 10000);");
+// console.log("predict([0, 0]);  // should have 0");
+// console.log("predict([0, 1]);  // should have 1");
+// console.log("predict([1, 0]);  // should have 1");
+// console.log("predict([1, 1]);  // should have 0");
 
-var x = [[0, 0], [0, 1], [1, 0], [1, 1]];
-var y = [0, 1, 1, 0];
-learn(x, y, 0.4, 1000);
-predict([0, 0]);  // should have 0
-predict([0, 1]);  // should have 1
-predict([1, 0]);  // should have 1
-predict([1, 1]);  // should have 0
+// var x = [[0, 0], [0, 1], [1, 0], [1, 1]];
+// var y = [0, 1, 1, 0];
+// learn(x, y, 0.4, 1000);
+// predict([0, 0]);  // should have 0
+// predict([0, 1]);  // should have 1
+// predict([1, 0]);  // should have 1
+// predict([1, 1]);  // should have 0
 
